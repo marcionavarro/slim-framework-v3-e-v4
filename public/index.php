@@ -6,11 +6,11 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 
-$app->group('/admin', function () use ($app) {
+/*$app->group('/admin', function () use ($app) {
     $app->get('/login', function () {
         echo 'login';
     });
-});
+});*/
 
 /*$app->group('/site', function () use ($app) {
 
@@ -21,13 +21,11 @@ $app->group('/admin', function () use ($app) {
 });*/
 
 
-// Só essa rota que funciona
-$app->get('/', function () {
-    echo 'home';
-});
-
-$app->get('/update/user/{id}', function (Request $request, Response $response, array $args) {
+/*$app->get('/update/user/{id}', function (Request $request, Response $response, array $args) {
     dd($args);
-});
+});*/
 
+$app->get('/', 'app\controllers\HomeController:index');
+$app->get('/contato', 'app\controllers\ContatoController:index');
+$app->get('/user/{id}', 'app\controllers\UserController:show');
 $app->run();

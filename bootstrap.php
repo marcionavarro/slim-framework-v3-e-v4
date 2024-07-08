@@ -3,9 +3,6 @@
 require "vendor/autoload.php";
 use Slim\App;
 
-// Create and configure Slim app
-$config = ['settings' => [
-    'addContentLengthHeader' => false,
-]];
+$config['displayErrorDetails'] = true;
 
-$app = new App($config);
+$app = new App(['settings' => $config]);
