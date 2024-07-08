@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+
+{% block master %}
+<div class="container">
+    <div class="row">
+        <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="col-6">
+                <h2 class="mb-5 pb-3 border-bottom">Cadastro - Sistema Validação</h2>
+                <form action="/cadastro/store" method="post">
+                    <div class="mb-3">
+                        <label for="inputName" class="form-label">Nome</label>
+                        <input type="text" name="name" class="form-control" id="inputName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputEmail1" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="inputEmail1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTelefone" class="form-label">Telefone</label>
+                        <input type="tel" name="phone" class="form-control" id="inputTelefone">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
