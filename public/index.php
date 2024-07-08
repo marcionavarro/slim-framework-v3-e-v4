@@ -26,6 +26,9 @@ use Slim\Http\Response;
 });*/
 
 $app->get('/', 'app\controllers\HomeController:index');
-$app->get('/contato', 'app\controllers\ContatoController:index');
 $app->get('/user/{id}', 'app\controllers\UserController:show');
+$app->get('/contato', 'app\controllers\ContatoController:index');
+$app->get('/posts', 'app\controllers\PostsController:index');
+$app->post('/user/subscribe', 'app\controllers\SubscribeController:store');
+
 $app->run();

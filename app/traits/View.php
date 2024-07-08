@@ -2,6 +2,7 @@
 
 namespace app\traits;
 
+use app\src\Load;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -21,7 +22,11 @@ trait View
 
     protected function functions()
     {
+        $functions = Load::file('/app/functions/twig.php');
 
+        foreach ($functions as $function) {
+            $this->twig->addFunction($function);
+        }
     }
 
     protected function load()
