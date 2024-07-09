@@ -2,15 +2,12 @@
 
 namespace Twig;
 
-$file_exists = new TwigFunction('file_exists', function($file) {
-    return file_exists($file);
-});
+use app\src\Flash;
 
-$teste = new TwigFunction('teste', function() {
-    echo 'teste';
+$message = new TwigFunction('message', function ($index) {
+    echo Flash::get($index);
 });
 
 return [
-    $file_exists,
-    $teste
+    $message
 ];

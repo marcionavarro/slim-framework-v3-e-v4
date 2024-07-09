@@ -1,6 +1,8 @@
 <?php
+session_start();
 
 require "vendor/autoload.php";
+
 use Slim\App;
 
 $config['displayErrorDetails'] = true;

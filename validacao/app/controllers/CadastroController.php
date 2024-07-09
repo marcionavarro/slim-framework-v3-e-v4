@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\src\Validate;
+
 class CadastroController extends Controller
 {
     public function create()
@@ -16,15 +18,13 @@ class CadastroController extends Controller
         $validate = new Validate;
 
         $data = $validate->validate([
-            'name' => 'required:max@30',
-            'email' => 'required:email:unique@posts',
+            'name' => 'required',
+            'email' => 'required:email',
             'phone' => 'required:phone'
         ]);
 
         if ($validate->hasErrors()) {
             return back();
         }
-
-        dd($data);
     }
 }
