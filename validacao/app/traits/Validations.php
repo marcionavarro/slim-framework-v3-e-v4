@@ -34,7 +34,7 @@ trait Validations
     {
         $model = "app\\models\\" . ucfirst($model);
         $model = new $model();
-        $find = $model->find($field, $_POST[$field]);
+        $find = $model->select()->where($field, $_POST[$field])->first();
 
         if ($find and !empty($_POST[$field])) {
             $this->errors[$field][] = flash($field, error('Esse valor ja esta cadastrado no banco de dados'));

@@ -9,12 +9,10 @@ class HomeController extends Controller
     public function index()
     {
         $users = new Users;
-        $users = $users->select()->first();
-
-        dd($users);
+        $users = $users->select()->get();
 
         $this->view('home', [
-            'nome' => 'Marcio',
+            'users' => $users,
             'title' => 'Home'
         ]);
     }

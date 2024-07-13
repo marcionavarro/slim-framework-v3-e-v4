@@ -2,8 +2,45 @@
 
 {% block master %}
 
-<h2>Home</h2>
 
-<button id="btn_subscribe" class="btn btn-danger">Subscribe</button>
+<div class="container">
+    <div class="row">
+        <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="col-8">
+                <div class="col-12">
+                    <h2 class="text-start mb-5">Lista de Usuários</h2>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Telefone</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td class="d-flex justify-content-end gap-3" colspan="2">
+                                <a href="/user/edit/{{ user.id }}" class="btn btn-success btn-sm">Editar</a>
+                                <button class="btn btn-danger btn-sm">Excluir</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

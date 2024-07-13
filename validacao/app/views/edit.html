@@ -1,0 +1,39 @@
+{% extends 'master.html' %}
+
+{% block master %}
+<div class="container">
+    <div class="row">
+        <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="col-md-8">
+                <h2 class="mb-5 pb-3 border-bottom">Editar - Sistema Validação</h2>
+
+                <div style="margin-bottom:10px">
+                    {{ message('message') }}
+                </div>
+
+                <form action="/user/update/{{ user.id }}" method="post">
+                    <div class="mb-3">
+                        <label for="inputName" class="form-label">Nome</label>
+                        <input type="text" name="name" class="form-control" id="inputName" value="{{ user.name }}">
+                        {{ message('name') }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputEmail1" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="inputEmail1" value="{{ user.email }}">
+                        {{ message('email') }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputTelefone" class="form-label">Telefone</label>
+                        <input type="tel" name="phone" class="form-control" id="inputTelefone" value="{{ user.phone }}">
+                        {{ message('phone') }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Editar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
