@@ -36,6 +36,12 @@ function success($message)
     return "<span class='success'>{$message}</span>";
 }
 
+function redirect($target)
+{
+    Redirect::redirect($target);
+    die();
+}
+
 function back()
 {
     Redirect::back();

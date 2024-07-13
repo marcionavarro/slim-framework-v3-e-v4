@@ -6,6 +6,11 @@
         <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
             <div class="col-md-8">
                 <h2 class="mb-5 pb-3 border-bottom">Cadastro - Sistema Validação</h2>
+
+                <div style="margin-bottom:10px">
+                    {{ message('message') }}
+                </div>
+
                 <form action="/cadastro/store" method="post">
                     <div class="mb-3">
                         <label for="inputName" class="form-label">Nome</label>

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Users;
 use app\src\Validate;
 
 class CadastroController extends Controller
@@ -27,6 +28,12 @@ class CadastroController extends Controller
             return back();
         }
 
-        dd($data);
+        $user = new Users;
+        $user = $user->create((array)$data);
+
+        if ($user) {
+            flash('message', success('Cadastrado com sucesso!'));
+            return back();
+        }
     }
 }

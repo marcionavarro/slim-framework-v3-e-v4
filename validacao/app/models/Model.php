@@ -2,10 +2,13 @@
 
 namespace app\models;
 
-//use app\models\Connection;
+use app\traits\Create;
+use app\traits\Read;
 
 class Model
 {
+    use Create, Read; // Update, Delete;
+
     protected $connect;
 
     public function __construct()
