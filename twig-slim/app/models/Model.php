@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-//use app\models\Connection;
-
 class Model
 {
     protected $connect;

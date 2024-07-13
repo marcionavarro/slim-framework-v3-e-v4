@@ -28,12 +28,12 @@ function flash($index, $message)
 
 function error($message)
 {
-    return  "<span class='error'>{$message}</span>";
+    return "<span class='error'>{$message}</span>";
 }
 
 function success($message)
 {
-    return  "<span class='success'>{$message}</span>";
+    return "<span class='success'>{$message}</span>";
 }
 
 function back()

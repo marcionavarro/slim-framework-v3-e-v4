@@ -19,12 +19,14 @@ class CadastroController extends Controller
 
         $data = $validate->validate([
             'name' => 'required',
-            'email' => 'required:email',
+            'email' => 'required:email:unique@users',
             'phone' => 'required:phone'
         ]);
 
         if ($validate->hasErrors()) {
             return back();
         }
+
+        dd($data);
     }
 }
