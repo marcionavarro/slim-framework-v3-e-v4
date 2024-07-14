@@ -8,12 +8,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $users = new Users;
-        $users = $users->select()->paginate(2)->get();
+        $user = new Users;
+        $users = $user->select()->paginate(1)->get();
 
         $this->view('home', [
             'users' => $users,
-            'title' => 'Home'
+            'title' => 'Home',
+            'links' => $user->links(),
         ]);
     }
 }

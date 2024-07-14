@@ -4,9 +4,14 @@
 namespace app\models;
 
 
+use app\traits\Links;
+
 class Paginate
 {
 
+    use Links;
+
+    private $page;
     private $perPage;
     private $offset;
     private $records;
@@ -17,9 +22,7 @@ class Paginate
         $this->current();
         $this->perPage($perPage);
         $this->offset();
-        $this->pages();
-
-        return $this;
+        $this->pages();;
     }
 
     public function sqlPaginate()
@@ -34,7 +37,7 @@ class Paginate
 
     private function current()
     {
-        $this->pages = $_GET['page'] ?? 1;
+        $this->page = $_GET['page'] ?? 1;
     }
 
     private function perPage($perPage)
@@ -44,7 +47,7 @@ class Paginate
 
     private function offset()
     {
-        $this->offset = ($this->pages * $this->perPage) - $this->perPage;
+        $this->offset = ($this->page * $this->perPage) - $this->perPage;
     }
 
     private function pages()

@@ -35,11 +35,16 @@ trait Read
     public function paginate($perPage)
     {
         $this->paginate = new Paginate();
-        $this->paginate->records(count($this->get()));
+        $this->paginate->records($this->count());
         $this->paginate->paginate($perPage);
+        $this->sql .= $this->paginate->sqlPaginate();
 
-        $this->isPaginate = true;
         return $this;
+    }
+
+    public function links()
+    {
+        return $this->paginate->links();
     }
 
     public function get()
@@ -54,6 +59,12 @@ trait Read
         $select->execute();
 
         return $select->fetch();
+    }
+
+    public function count()
+    {
+        $select = $this->bindAndExecute();
+        return $select->rowCount();
     }
 
     public function order($field, $value = 'ASC')
@@ -93,10 +104,6 @@ trait Read
 
     private function bindAndExecute()
     {
-        if ($this->isPaginate) {
-            $this->sql = $this->sql . $this->paginate->sqlPaginate();
-        }
-
         $select = $this->connect->prepare($this->sql);
         $select->execute($this->binds);
 
