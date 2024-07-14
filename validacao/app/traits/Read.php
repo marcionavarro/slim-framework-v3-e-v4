@@ -42,6 +42,12 @@ trait Read
         return $select->fetch();
     }
 
+    public function order($field, $value = 'ASC')
+    {
+        $this->sql .= " ORDER BY ${field} {$value}";
+        return $this;
+    }
+
     private function whereArgs($numArgs, $args)
     {
         if ($numArgs < 2) {

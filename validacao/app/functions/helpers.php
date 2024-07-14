@@ -28,12 +28,12 @@ function flash($index, $message)
 
 function error($message)
 {
-    return "<span class='error'>{$message}</span>";
+    return "<div class='alert alert-danger mt-2'>{$message}</div>";
 }
 
 function success($message)
 {
-    return "<span class='success'>{$message}</span>";
+    return "<div class='alert alert-success mb-4'>{$message}</div>";
 }
 
 function redirect($target)

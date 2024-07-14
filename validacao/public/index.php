@@ -12,5 +12,6 @@ $app->post('/cadastro/store', 'app\controllers\CadastroController:store');
 
 $app->get('/user/edit/{id}', 'app\controllers\UserController:edit');
 $app->post('/user/update/{id}', 'app\controllers\UserController:update');
+$app->get('/user/delete/{id}', 'app\controllers\UserController:destroy');
 
 $app->run();

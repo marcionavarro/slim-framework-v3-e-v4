@@ -6,10 +6,14 @@
 <div class="container">
     <div class="row">
         <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
-            <div class="col-8">
-                <div class="col-12">
-                    <h2 class="text-start mb-5">Lista de Usuários</h2>
+            <div class="col-xs-12 col-md-12 col-lg-8">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Listar usuários</h2>
+                    <div>
+                        <a href="/cadastro" class="btn btn-dark btn-sm ds-inline-block">Cadastrar</a>
+                    </div>
                 </div>
+                <hr class="mb-5" />
 
                 <div class="table-responsive">
                     <table class="table">
@@ -30,8 +34,8 @@
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
                             <td class="d-flex justify-content-end gap-3" colspan="2">
-                                <a href="/user/edit/{{ user.id }}" class="btn btn-success btn-sm">Editar</a>
-                                <button class="btn btn-danger btn-sm">Excluir</button>
+                                <a href="/user/edit/{{ user.id }}" class="btn btn-dark btn-sm">Editar</a>
+                                <a href="/user/delete/{{ user.id }}" class="btn btn-danger btn-sm">Excluir</a>
                             </td>
                         </tr>
                         {% endfor %}

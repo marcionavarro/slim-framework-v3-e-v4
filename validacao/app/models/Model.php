@@ -2,14 +2,20 @@
 
 namespace app\models;
 
-use app\traits\Create;
-use app\traits\Read;
+use app\traits\{
+    Create,
+    Read,
+    Update,
+    Delete
+};
 
 class Model
 {
-    use Create, Read; // Update, Delete;
+    use Create, Read, Update, Delete;
 
     protected $connect;
+    protected $field;
+    protected $value;
 
     public function __construct()
     {
@@ -25,12 +31,25 @@ class Model
         return $all->fetchAll();
     }
 
-    public function find($field, $value) {
-        $sql = "select * from {$this->table} where {$field} = :{$field}";
-        $find = $this->connect->prepare($sql);
-        $find->bindValue($field, $value);
-        $find->execute();
+    public function find($field, $value)
+    {
+        $this->field = $field;
+        $this->value = $value;
 
-        return $find->fetch();
+        return $this;
+    }
+
+    public function destroy($field, $value)
+    {
+        if (!isset($field) or !isset($value)) {
+            throw new \Exception("Antes de fazer o update, por favor chame o delete");
+        }
+
+        $sql = "DELETE FROM {$this->table} WHERE {$field} = :{$field}";
+        $delete = $this->connect->prepare($sql);
+        $delete->bindValue($field, $value);
+        $delete->execute();
+
+        return $delete->rowCount();
     }
 }
