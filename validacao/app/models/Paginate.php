@@ -53,5 +53,15 @@ class Paginate
     private function pages()
     {
         $this->pages = ceil($this->records / $this->perPage);
+        $this->isValidateNumberPage();
+    }
+
+    private function isValidateNumberPage()
+    {
+        if (($this->page > $this->pages) || $this->page < 0) {
+            return back();
+        }
+
+        return $this->pages;
     }
 }

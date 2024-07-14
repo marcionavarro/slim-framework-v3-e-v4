@@ -47,3 +47,8 @@ function back()
     Redirect::back();
     die();
 }
+
+function search()
+{
+    return filter_input(INPUT_GET, 's', FILTER_SANITIZE_STRING);
+}

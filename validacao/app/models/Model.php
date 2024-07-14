@@ -16,6 +16,7 @@ abstract class Model
     protected $connect;
     protected $field;
     protected $value;
+    protected $sql;
 
     public function __construct()
     {

@@ -16,11 +16,13 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = $this->post->all();
+        $post = new Post;
+        $posts = $post->posts()->search('title')->order('users.id', 'DESC')->paginate(10)->get();
 
         $this->view('posts', [
-            'title' => 'Lista de Posts',
-            'posts' => $posts
+            'title' => 'Posts',
+            'posts' => $posts,
+            'links' => $post->links(),
         ]);
     }
 }

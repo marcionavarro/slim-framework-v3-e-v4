@@ -40,8 +40,8 @@ trait Links
             for ($i = $this->page - $this->maxLinks; $i <= $this->page + $this->maxLinks; $i++) {
                 $class = ($i == $this->page) ? 'active' : '';
                 $linkOrSpan = ($i == $this->page) ?
-                    "<span class='page-link {$class}' href='?page={$i}'>{$i}</span>" :
-                    "<a class='page-link {$class}' href='?page={$i}'>{$i}</a>";
+                    "<span class='page-link {$class}'>{$i}</span>" :
+                    "<a class='page-link {$class}' href='{$this->pageRequest()}{$i}'>{$i}</a>";
 
                 if ($i > 0 && $i <= $this->pages) {
                     $links .= "<li class='page-item'>";
@@ -58,14 +58,21 @@ trait Links
         }
     }
 
+    private function pageRequest()
+    {
+        return (!search()) ?
+            $page = "?page=" :
+            $page = "?s=" . search() . "&page=";
+    }
+
     private function previous()
     {
         if ($this->page > 1) {
             $preview = ($this->page - 1);
             $back = !empty($this->back) ? $this->back : '&laquo;';
 
-            $links = "<li class='page-item'><a class='page-link' href='?page=1' aria-label='Previous'>{$this->firstLink}</a></li>";
-            $links .= "<li class='page-item'><a class='page-link' href='?page={$preview}' aria-label='Previous'>";
+            $links = "<li class='page-item'><a class='page-link' href='{$this->pageRequest()}1' aria-label='Previous'>{$this->firstLink}</a></li>";
+            $links .= "<li class='page-item'><a class='page-link' href='{$this->pageRequest()}{$preview}' aria-label='Previous'>";
             $links .= "<span aria-hidden='true'>{$back}</span>";
             $links .= "</a></li>";
 
@@ -80,9 +87,9 @@ trait Links
             $advanced = !empty($this->advanced) ? $this->advanced : '&raquo;';
 
             $next = ($this->page + 1);
-            $links = "<li class='page-item'><a class='page-link' href='?page={$next}' aria-label='Previous'>";
+            $links = "<li class='page-item'><a class='page-link' href='{$this->pageRequest()}{$next}' aria-label='Previous'>";
             $links .= "<span aria-hidden='true'>{$advanced}</span>";
-            $links .= "<li class='page-item'><a class='page-link' href='?page={$this->pages}' aria-label='next'>{$lastLink}</a></li>";
+            $links .= "<li class='page-item'><a class='page-link' href='{$this->pageRequest()}{$this->pages}' aria-label='next'>{$lastLink}</a></li>";
             $links .= "</a></li>";
 
             return $links;

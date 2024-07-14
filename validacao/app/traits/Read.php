@@ -6,7 +6,6 @@ use app\models\Paginate;
 
 trait Read
 {
-    private $sql;
     private $binds;
     private $paginate;
     private $isPaginate = false;
@@ -45,6 +44,21 @@ trait Read
     public function links()
     {
         return $this->paginate->links();
+    }
+
+    public function search($fields)
+    {
+        $fields = explode(',', $fields);
+        $fields = str_replace(' ', '', $fields);
+
+        $this->sql .= " WHERE";
+        foreach ($fields as $field) {
+            $this->sql .= " {$field} LIKE :{$field} OR";
+            $this->binds[$field] = "%" . search() . "%";
+        }
+        $this->sql = rtrim($this->sql, 'OR');
+
+        return $this;
     }
 
     public function get()
