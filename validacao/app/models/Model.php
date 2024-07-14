@@ -9,7 +9,7 @@ use app\traits\{
     Delete
 };
 
-class Model
+abstract class Model
 {
     use Create, Read, Update, Delete;
 
