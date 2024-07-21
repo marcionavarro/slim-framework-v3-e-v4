@@ -1,0 +1,54 @@
+{% extends 'master.html' %}
+
+{% block master %}
+
+<div class="container">
+    <div class="row">
+        <div class="d-flex flex-column justify-content-center align-items-center my-5">
+            <div class="col-md-8">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Formulario de Contato</h2>
+                    <!--<div>
+                        <a href="/" class="btn btn-dark btn-sm ds-inline-block">Home</a>
+                    </div>-->
+                </div>
+                <hr class="mb-5" />
+
+                <!--<div style="margin-bottom:10px">
+                    {{ message('message') }}
+                </div>
+-->
+                <form action="/contato/store" method="post">
+                    <div class="mb-3">
+                        <label for="inputName" class="form-label">Nome</label>
+                        <input type="text" name="name" class="form-control" id="inputName">
+                        {{ message('name') }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="inputEmail">
+                        {{ message('email') }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputSubject" class="form-label">Assunto</label>
+                        <input type="text" name="subject" class="form-control" id="inputSubject">
+                        {{ message('subject') }}
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="inputMessage" class="form-label">Mensagem</label>
+                        <textarea name="mensagem" rows="10" style="width: 100%" id="inputMessage"></textarea>
+                        {{ message('mensagem') }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
