@@ -13,6 +13,8 @@ class Image
     private $rename;
     private $type;
     private $resized = false;
+    private $resizeWidth;
+    private $resizeHeight;
 
     public function __construct($imageName)
     {
@@ -22,7 +24,8 @@ class Image
 
     public function upload()
     {
-
+        $this->rename();
+        $this->doUpload();
     }
 
     public function getName()
@@ -40,18 +43,24 @@ class Image
             : ($size / $target[1])
         );
 
-        $resizeWidth = round($target[0] * $percent);
-        $resizeHeight = round($target[1] * $percent);
+        $this->resizeWidth = round($target[0] * $percent);
+        $this->resizeHeight = round($target[1] * $percent);
 
         $this->type = $type;
         $this->resized = true;
+
+        return $this;
+    }
+
+    public function delete($photo)
+    {
+        @unlink(path() . "/public/{$photo}");
     }
 
     private function rename()
     {
         $extension = pathinfo($this->image['name'], PATHINFO_EXTENSION);
-
-        $this->rename = md5(uniqid() . time() . ".{$extension}");
+        $this->rename = md5(uniqid()) . time() . ".{$extension}";
     }
 
     private function type($type)
@@ -73,6 +82,19 @@ class Image
     {
         if (!$this->resized) {
             throw new \Exception("Está faltando você chamar o método size para redmiensionar essa foto");
+        }
+
+        $image = $this->intervation->make($this->image['tmp_name'])->resize($this->resizeWidth, $this->resizeHeight, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+
+        if ($this->type == 'user') {
+            $background = $this->intervation->canvas(190, 190);
+            $background->insert($image, 'center');
+            $background->save("assets/imgs/photos/{$this->rename}");
+        } else {
+            $image->save("assets/imgs/photos/{$this->rename}");
         }
 
     }
