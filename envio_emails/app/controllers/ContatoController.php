@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\src\Email;
 use app\src\Validate;
+use app\templates\Contato;
 
 class ContatoController extends Controller
 {
@@ -32,7 +34,11 @@ class ContatoController extends Controller
 
         $email->data([
             'fromName' => $data->name,
+            'fromEmail' => $data->email,
             'toName' => 'Marcio Navarro',
-        ])->template(new Contato)->send();
+            'toEmail' => 'marcionavarrodearaujo@gmail.com',
+            'subject' => $data->subject,
+            'mensagem' => $data->mensagem
+        ])->template(new Contato())->send();
     }
 }
