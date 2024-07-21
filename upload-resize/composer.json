@@ -1,0 +1,17 @@
+{
+    "require": {
+        "slim/slim": "3.*",
+        "twig/twig": "2.*",
+        "dopesong/slim-whoops": "^2.3",
+        "phpmailer/phpmailer": "^6.9",
+        "intervention/image": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app"
+        },
+        "files": [
+            "app/functions/helpers.php"
+        ]
+    }
+}
