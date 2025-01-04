@@ -12,14 +12,19 @@ class HomeController extends Controller
     {
         $user = new Users;
         $users = $user->select()->search('name, email')->paginate(5)->get();
+        $userLogado = false;
+        //dd(Password::make('admin'));
 
-        $login = new Login;
-        $loggedIn = $login->type('admin')->login($data, new Users);
+        if ($_SESSION && $_SESSION['id_admin'] && $_SESSION['admin_login']) {
+            $userLogado = true;
+        }
 
         $this->view('home', [
             'title' => 'Home',
             'users' => $users,
             'links' => $user->links(),
+            'logado' => $userLogado
         ]);
+
     }
 }

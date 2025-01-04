@@ -10,7 +10,7 @@ return [
     'login' => [
         'admin' => [
             'loggedIn' => 'admin_login',
-            'redirect' => '/admin',
+            'redirect' => '/',
             'idLoggedIn' => 'id_admin'
         ],
         'user' => [

@@ -1,0 +1,62 @@
+{% extends 'master.html' %}
+
+{% block master %}
+
+<style>
+    section {
+        height: 100vh;
+    }
+
+    .form-signin {
+        max-width: 330px;
+        padding: 1rem;
+    }
+
+    .form-signin form img {
+        width: 100%;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+
+<section class="d-flex align-items-center py-4 bg-body-tertiary">
+    <main class="form-signin w-100 m-auto">
+
+        {{ message('message') }}
+
+        <form action="/login" method="post">
+            <img class="mb-4" src="assets/imagens/logo_slim.png" alt="">
+            <h1 class="h3 mb-3 fw-normal">Login</h1>
+
+            <div class="form-floating">
+                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">*E-mail</label>
+                {{ message('email') }}
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">*Senha</label>
+                {{ message('password') }}
+            </div>
+            <button class="btn btn-success w-100 py-2" type="submit">Entrar</button>
+            <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2025</p>
+        </form>
+    </main>
+</section>
+
+
+{% endblock %}
